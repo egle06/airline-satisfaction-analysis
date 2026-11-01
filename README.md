@@ -27,7 +27,7 @@ Limpiar y explorar el dataset *Airline Passenger Satisfaction* para identificar 
 | Categorías inconsistentes | `.str.strip().str.title()` | Unificar el formato de escritura |
 | 310 nulos en `Arrival Delay in Minutes` | Imputación con la **mediana** (0 min) | La variable es muy asimétrica; la media (15,2 min) está inflada por outliers |
 | 15.932 ceros en escalas de servicio | Reemplazo por la **moda** de cada columna | Son escalas ordinales enteras; eliminar filas perdería el 7,9 % del dataset |
-| Outliers en demoras | **No se eliminaron** | Se conservan como casos reales; se usa la mediana en las agrupaciones |
+| Outliers en demoras | **No se eliminaron** | Son casos plausibles (cancelaciones, fallas técnicas) y pueden estar asociados a la insatisfacción. Su efecto se neutraliza usando la mediana en las agrupaciones.|
 | Tipos de datos | `Arrival Delay` a entero; 5 columnas de texto a `category` | Reflejar la naturaleza de cada variable |
 | Índice | `reset_index(drop=True)` | Dejar el índice ordenado tras la limpieza |
 
