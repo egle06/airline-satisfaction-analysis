@@ -54,7 +54,7 @@ Limpiar y explorar el dataset *Airline Passenger Satisfaction* para identificar 
 ## Evaluación de un modelo: separación en train y test
 
 ### Archivo
-`[nombre_del_notebook].ipynb`: parte del dataset limpio (`df_limpio`, ver sección anterior) y entrena un clasificador para predecir la satisfacción del pasajero.
+`Entrenar_y_evaluar_sin_trampas_train_test_y_sobreajuste.ipynb`: parte del dataset limpio (`df_limpio`, ver sección anterior) y entrena un clasificador para predecir la satisfacción del pasajero.
 
 ### Preparación
 - **Target (`y`):** `satisfaction` codificada como 1 (satisfecho) y 0 (neutral o insatisfecho).
