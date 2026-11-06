@@ -1,7 +1,7 @@
 # Análisis de satisfacción de pasajeros de aerolíneas
 
 ## Objetivo
-Limpiar y explorar el dataset *Airline Passenger Satisfaction* para identificar qué factores se asocian con la satisfacción de los pasajeros. Es la base del proyecto final de Ciencia de Datos.
+Limpiar, explorar y modelar el dataset *Airline Passenger Satisfaction* para identificar qué factores se asocian con la satisfacción de los pasajeros y evaluar un modelo de clasificación. Es la base del proyecto final de Ciencia de Datos.
 
 ## Origen de los datos
 - **Fuente:** Kaggle, [Airline Passenger Satisfaction](https://www.kaggle.com/datasets/teejmahal20/airline-passenger-satisfaction)
@@ -9,7 +9,8 @@ Limpiar y explorar el dataset *Airline Passenger Satisfaction* para identificar 
 - **Variable objetivo:** `satisfaction` (*satisfied* / *neutral or dissatisfied*)
 
 ## Contenido del repositorio
-- `Pre-Entrega: Limpieza y Análisis Exploratorio de un Dataset Real.ipynb`: notebook con carga, diagnóstico, limpieza y agrupaciones.
+- `Pre-Entrega: Limpieza y Análisis Exploratorio de un Dataset Real.ipynb`: carga, diagnóstico, limpieza y agrupaciones.
+- `Entrenar_y_evaluar_sin_trampas_train_test_y_sobreajuste.ipynb`: separación en train y test, entrenamiento de un árbol de decisión y análisis de sobreajuste.
 - `train.csv`: dataset original.
 
 ## Diagnóstico inicial
@@ -47,14 +48,14 @@ Limpiar y explorar el dataset *Airline Passenger Satisfaction* para identificar 
 **Conclusión preliminar:** la hipótesis se sostiene parcialmente. Wifi y asiento muestran diferencias claras, pero las demoras casi no se diferencian, y la clase combinada con el tipo de viaje pesa más de lo supuesto. Estas son asociaciones descriptivas, no relaciones causales; la importancia relativa de cada variable se evaluará con modelos en etapas posteriores.
 
 
-## Limitaciones
+## Limitaciones del análisis exploratorio
 - Imputar con la moda asume que quien no respondió habría elegido la respuesta más común (afecta ~1,1 % de las celdas de escala).
 - Las agrupaciones muestran asociaciones, no causalidad.
 
 ## Evaluación de un modelo: separación en train y test
 
 ### Archivo
-`Entrenar_y_evaluar_sin_trampas_train_test_y_sobreajuste.ipynb`: parte del dataset limpio (`df_limpio`, ver sección anterior) y entrena un clasificador para predecir la satisfacción del pasajero.
+`Entrenar_y_evaluar_sin_trampas_train_test_y_sobreajuste.ipynb`: reproduce la carga y la limpieza descritas en la sección anterior (`df_limpio`) y entrena un clasificador para predecir la satisfacción del pasajero.
 
 ### Preparación
 - **Target (`y`):** `satisfaction` codificada como 1 (satisfecho) y 0 (neutral o insatisfecho).
