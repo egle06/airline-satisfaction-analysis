@@ -51,5 +51,36 @@ Limpiar y explorar el dataset *Airline Passenger Satisfaction* para identificar 
 - Imputar con la moda asume que quien no respondió habría elegido la respuesta más común (afecta ~1,1 % de las celdas de escala).
 - Las agrupaciones muestran asociaciones, no causalidad.
 
+## Evaluación de un modelo: separación en train y test
+
+### Archivo
+`[nombre_del_notebook].ipynb`: parte del dataset limpio (`df_limpio`, ver sección anterior) y entrena un clasificador para predecir la satisfacción del pasajero.
+
+### Preparación
+- **Target (`y`):** `satisfaction` codificada como 1 (satisfecho) y 0 (neutral o insatisfecho).
+- **Características (`X`):** 23 columnas. Se descartaron `id` (identificador) y el propio target, y las 4 variables de texto se convirtieron en columnas 0/1 con `get_dummies`.
+
+### División usada
+- `train_test_split` con **`test_size=0.2`** y **`random_state=42`** (división reproducible).
+- **Train:** 83.123 pasajeros (80 %) | **Test:** 20.781 pasajeros (20 %).
+- El balance del target es similar en ambos conjuntos (43,3 % y 43,6 % de satisfechos).
+- El modelo se entrenó **solo con `X_train` e `y_train`**; el conjunto de prueba se usó únicamente para evaluar.
+
+### Modelo y resultados
+`DecisionTreeClassifier` sin límite de profundidad (no requiere escalar las variables).
+
+| Conjunto | Score (accuracy) |
+|---|---|
+| Train | 1,0000 |
+| Test | 0,9395 |
+
+Referencia: predecir siempre «no satisfecho» daría 0,5636.
+
+### Conclusión del experimento
+El árbol presenta **sobreajuste moderado**: acierta el 100 % de los pasajeros de entrenamiento (los memoriza, con 34 niveles y 3.737 hojas), pero baja a 93,95 % en test, una diferencia de 6,05 puntos. Aun así supera ampliamente la referencia de 56,4 %, por lo que aprendió patrones reales; no hay *underfitting*.
+
+Al limitar la profundidad, la brecha se reduce: con `max_depth=15` el test sube a 94,55 % y la diferencia baja a 2,7 puntos. Más allá de esa profundidad, el puntaje en train sigue subiendo mientras el de test cae.
+
+**Limitaciones:** la profundidad se comparó usando el conjunto de prueba, lo que en un proyecto real debería hacerse con validación cruzada. El *accuracy* es una métrica simple; más adelante conviene complementarla con precisión, recall y matriz de confusión.
 ## Autora
 Egle Martinelli
